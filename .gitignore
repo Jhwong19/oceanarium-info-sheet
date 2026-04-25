@@ -1,0 +1,5 @@
+.DS_Store
+*.log
+setup-image-mcp.sh
+images.png
+.claude/

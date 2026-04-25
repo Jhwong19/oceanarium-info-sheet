@@ -1,0 +1,961 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Singapore Oceanarium — Kids Fact Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#0e74c2;
+    --blue-deep:#0a5a99;
+    --blue-deepest:#063e6e;
+    --coral:#ff7a6c;
+    --coral-soft:#ffb0a3;
+    --peach:#fbcdc0;
+    --pink:#f8c8c8;
+    --pink-soft:#fde0e0;
+    --cream:#fff3ec;
+    --yellow:#ffd166;
+    --teal:#3ec1c4;
+    --green:#9ad26d;
+    --ink:#0a2540;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#000;color:#fff}
+  body{
+    font-family:'Quicksand',system-ui,sans-serif;
+    font-weight:500;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding:24px 12px 60px;
+  }
+  .book{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+
+/* =================== PAGE =================== */
+.page{
+position:relative;
+background:var(--blue);
+border-radius:30px;
+overflow:hidden;
+padding:34px 30px 44px;
+color:#fff;
+box-shadow:0 30px 60px -30px rgba(0,0,0,.55);
+}
+.page::before{
+/* subtle noise texture */
+content:"";position:absolute;inset:0;pointer-events:none;
+background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+background-size:3px 3px;mix-blend-mode:overlay;opacity:.7;
+}
+
+/* Decorative coral blobs */
+.blob{position:absolute;pointer-events:none;z-index:0}
+.blob.tl{top:-60px;left:-50px;width:180px;color:var(--coral)}
+.blob.tr{top:-40px;right:-60px;width:160px;color:var(--coral)}
+.blob.bl{bottom:-70px;left:-50px;width:200px;color:var(--coral)}
+.blob.br{bottom:-60px;right:-70px;width:200px;color:var(--pink)}
+.squiggle{position:absolute;right:-10px;top:34%;width:200px;color:var(--peach);z-index:1;opacity:.95}
+.swirl{position:absolute;left:30px;bottom:18%;width:140px;color:var(--coral);z-index:1}
+
+/* Hero illustration frame */
+.hero{
+position:relative;
+border-radius:22px;
+overflow:hidden;
+aspect-ratio:16/10;
+margin-bottom:22px;
+box-shadow:inset 0 -20px 50px rgba(0,0,0,.18);
+}
+.hero svg{display:block;width:100%;height:100%}
+
+/* Photographic hero per page */
+.hero-photo{
+display:block;width:100%;
+aspect-ratio:16/9;object-fit:cover;
+border-radius:24px;
+margin:0 0 22px;
+box-shadow:0 18px 36px -22px rgba(0,0,0,.55), inset 0 -28px 48px rgba(0,0,0,.18);
+position:relative;z-index:2;
+background:rgba(255,255,255,.05);
+}
+@media (max-width:560px){
+.hero-photo{aspect-ratio:4/3;border-radius:18px;margin-bottom:18px}
+}
+
+/* Kid mascot characters */
+.mascot{position:absolute;pointer-events:none;z-index:3;filter:drop-shadow(0 8px 14px rgba(0,0,0,.35))}
+.mascot.snorkeler{bottom:14px;left:18px;width:140px;height:auto}
+.mascot.diver{bottom:14px;right:18px;width:160px;height:auto}
+img.mascot{border-radius:18px;border:3px solid #fff3ec;background:#fff3ec;display:block}
+@media (max-width:560px){
+.mascot.snorkeler{width:96px;left:10px;bottom:10px}
+.mascot.diver{width:110px;right:10px;bottom:10px}
+}
+
+/* Round/blob illustration frames */
+.scene{
+position:relative;
+width:100%;
+aspect-ratio:1/1;
+overflow:hidden;
+border-radius:50% 48% 52% 50%/50% 52% 48% 50%;
+box-shadow:inset 0 -12px 30px rgba(0,0,0,.15);
+}
+.scene svg,.scene img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* Typography */
+h1,h2,h3,h4{font-family:'Fredoka',sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.05}
+h1{font-size:clamp(28px,6vw,38px);color:var(--peach);margin-bottom:14px}
+h2{font-size:clamp(26px,5.5vw,34px);color:var(--peach);margin-bottom:8px}
+h3{font-size:clamp(20px,4.4vw,26px);color:var(--peach);margin-bottom:8px}
+h4{font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;color:#fff;margin-bottom:4px;letter-spacing:.02em}
+p{font-size:16px;color:#eaf4ff}
+strong{color:#fff;font-weight:700}
+.lede{font-size:18px;color:#eaf4ff;max-width:46ch}
+.sub{font-size:15px;color:#cfe3f4}
+
+.pill{
+display:inline-block;background:var(--coral);color:#fff;
+font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;
+padding:6px 14px;border-radius:999px;letter-spacing:.04em;
+box-shadow:0 6px 14px -6px rgba(0,0,0,.4);
+}
+.num{
+width:54px;height:54px;border-radius:50%;
+background:var(--coral);color:#fff;
+font-family:'Fredoka',sans-serif;font-weight:700;font-size:28px;
+display:flex;align-items:center;justify-content:center;
+box-shadow:0 8px 20px -8px rgba(0,0,0,.5);
+flex-shrink:0;
+}
+
+.head-row{display:flex;align-items:center;gap:14px;position:relative;z-index:2;margin-bottom:18px}
+.head-row .meta{display:flex;flex-direction:column}
+.head-row .meta .pill{margin-bottom:6px;align-self:flex-start}
+
+/* Two-column section block */
+.split{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+align-items:center;
+position:relative;z-index:2;
+margin:18px 0 26px;
+}
+.split.flip > .scene-wrap{order:2}
+@media (max-width:560px){
+.split{grid-template-columns:1fr;gap:18px}
+.split.flip > .scene-wrap{order:0}
+}
+
+.lookout{
+background:rgba(255,255,255,.08);
+border:1.5px solid rgba(255,255,255,.18);
+border-radius:22px;
+padding:18px 20px;
+margin:14px 0;
+position:relative;z-index:2;
+}
+.lookout h4{color:var(--peach);font-size:20px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.lookout ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.lookout li{padding-left:30px;position:relative;font-size:15.5px}
+.lookout li::before{
+content:"";position:absolute;left:0;top:7px;width:18px;height:18px;
+background:var(--yellow);border-radius:50%;
+box-shadow:inset -2px -2px 0 rgba(0,0,0,.1);
+}
+.lookout li b{color:var(--peach);font-weight:700;font-family:'Fredoka',sans-serif;font-size:17px}
+
+.funfacts{
+background:var(--cream);
+color:var(--ink);
+border-radius:22px;
+padding:18px 20px 20px;
+position:relative;z-index:2;
+margin:14px 0;
+box-shadow:0 14px 30px -20px rgba(0,0,0,.4);
+}
+.funfacts h4{
+color:var(--coral);font-size:22px;
+display:flex;align-items:center;gap:8px;margin-bottom:10px;
+}
+.funfacts ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.funfacts li{padding-left:28px;position:relative;font-size:15px;color:#243a55}
+.funfacts li::before{content:"⭐";position:absolute;left:0;top:0;font-size:16px}
+
+.quiz{
+background:rgba(0,0,0,.18);
+border-radius:22px;padding:18px 20px;
+position:relative;z-index:2;margin:14px 0 0;
+}
+.quiz h4{color:var(--peach);font-size:20px;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.qa{margin-bottom:10px}
+.qa summary{
+cursor:pointer;list-style:none;
+display:flex;align-items:flex-start;gap:10px;
+padding:10px 12px;border-radius:14px;
+background:rgba(255,255,255,.07);
+transition:background .2s;
+font-size:15.5px;
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:hover{background:rgba(255,255,255,.13)}
+.qa summary::before{
+content:"?";flex-shrink:0;
+width:26px;height:26px;border-radius:50%;
+background:var(--coral);color:#fff;
+font-family:'Fredoka',sans-serif;font-weight:700;font-size:16px;
+display:flex;align-items:center;justify-content:center;
+}
+.qa[open] summary::before{content:"!";background:var(--green)}
+.qa .ans{
+margin-top:8px;padding:10px 14px 10px 48px;
+color:var(--peach);font-family:'Fredoka',sans-serif;font-weight:600;font-size:15px;
+}
+
+/* COVER specifics */
+.cover{padding-bottom:200px}
+.cover h1{margin-top:8px}
+.cover .lede{margin-top:10px}
+.cover .six-tags{
+display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;position:relative;z-index:2;
+}
+.six-tags span{
+background:rgba(255,255,255,.12);color:#fff;
+font-family:'Fredoka',sans-serif;font-weight:500;font-size:13.5px;
+padding:6px 12px;border-radius:999px;
+border:1px solid rgba(255,255,255,.2);
+}
+
+/* Section preview cards on cover */
+.section-previews{
+display:grid;grid-template-columns:1fr 1fr;gap:12px;
+margin-top:22px;position:relative;z-index:2;
+}
+.preview-card{
+display:grid;grid-template-columns:auto 56px 1fr;align-items:center;gap:12px;
+padding:10px 12px;border-radius:18px;
+background:rgba(255,255,255,.10);
+border:1.5px solid rgba(255,255,255,.18);
+text-decoration:none;color:#fff;
+transition:background .2s, transform .2s;
+}
+.preview-card:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.preview-num{
+width:32px;height:32px;border-radius:50%;
+background:var(--coral);color:#fff;
+font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px;
+display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.preview-thumb{
+width:56px;height:56px;border-radius:14px;object-fit:cover;
+box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+}
+.preview-body{display:flex;flex-direction:column;gap:2px;min-width:0}
+.preview-body b{
+font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;color:var(--peach);
+}
+.preview-body em{
+font-style:normal;font-size:12.5px;color:#dbe7f4;line-height:1.35;
+}
+@media (max-width:560px){
+.section-previews{grid-template-columns:1fr;gap:10px}
+.preview-card{grid-template-columns:auto 48px 1fr;gap:10px;padding:8px 10px}
+.preview-thumb{width:48px;height:48px;border-radius:12px}
+.cover{padding-bottom:160px}
+}
+.footer-cta{
+margin-top:24px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;
+color:#fff;display:flex;align-items:center;gap:10px;position:relative;z-index:4;
+}
+.footer-cta::before{content:"";width:30px;height:30px;background:var(--coral);border-radius:50%}
+
+/* CHALLENGE PAGE */
+.page[aria-labelledby="ch"]{padding-bottom:200px}
+.challenge-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;
+position:relative;z-index:2;
+}
+.challenge-grid .hero-photo{margin-bottom:14px}
+.challenge-grid .challenge-list{margin-top:0}
+@media (max-width:720px){
+.challenge-grid{grid-template-columns:1fr;gap:18px}
+.page[aria-labelledby="ch"]{padding-bottom:160px}
+}
+.challenge-list{
+background:var(--cream);color:var(--ink);
+border-radius:22px;padding:22px;margin-top:18px;
+position:relative;z-index:2;
+}
+.challenge-list h3{color:var(--coral);margin-bottom:14px}
+.challenge-list ol{list-style:none;counter-reset:c;display:flex;flex-direction:column;gap:14px}
+.challenge-list li{
+counter-increment:c;
+padding-left:46px;position:relative;
+font-family:'Fredoka',sans-serif;font-weight:500;font-size:16px;color:#1a3454;
+padding-bottom:12px;border-bottom:1.5px dashed rgba(10,37,64,.2);
+}
+.challenge-list li::before{
+content:counter(c);
+position:absolute;left:0;top:-4px;
+width:32px;height:32px;border-radius:50%;
+background:var(--coral);color:#fff;
+display:flex;align-items:center;justify-content:center;
+font-family:'Fredoka',sans-serif;font-weight:700;font-size:16px;
+}
+.challenge-list .blank{
+display:inline-block;border-bottom:2.5px dotted var(--coral);
+min-width:140px;height:18px;margin-left:6px;
+}
+
+/* Animation accents */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero,.scene{animation:float 6s ease-in-out infinite}
+.scene{animation-duration:7s;animation-delay:.4s}
+
+/* Print */
+@media print{
+body{background:#fff;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.book{gap:0}
+.page{break-after:page;page-break-after:always;border-radius:0;box-shadow:none;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hero,.scene,.hero-photo{animation:none}
+/* Reveal all quiz answers when printing */
+details, details > *{display:block !important}
+.qa{margin-bottom:8px}
+.qa summary{cursor:default;list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa .ans{display:block !important;margin-top:6px;color:#0a2540}
+.qa summary::before{content:"✓" !important;background:var(--green) !important;color:#fff}
+}
+</style>
+
+</head>
+<body>
+
+<!-- ============================================================ -->
+
+<!-- REUSABLE SVG DEFS (decorative shapes) -->
+
+<!-- ============================================================ -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Coral blob shape -->
+    <symbol id="blobShape" viewBox="0 0 200 200">
+      <path fill="currentColor" d="M48 28C82 8 132 6 158 32c26 26 28 76 8 110-20 34-66 50-104 36C24 164-2 124 4 86 8 60 22 42 48 28Z"/>
+    </symbol>
+    <!-- Pink soft blob -->
+    <symbol id="softBlob" viewBox="0 0 200 200">
+      <path fill="currentColor" d="M40 60C58 20 110 14 148 40c38 26 42 86 14 122-28 36-92 32-122-2C16 138 22 88 40 60Z"/>
+    </symbol>
+    <!-- Squiggle wave -->
+    <symbol id="squig" viewBox="0 0 220 60">
+      <path d="M5 30 Q 30 0 55 30 T 105 30 T 155 30 T 205 30" stroke="currentColor" stroke-width="9" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <!-- Loop swirl -->
+    <symbol id="swirl" viewBox="0 0 180 200">
+      <path d="M30 5 C30 90 0 120 30 150 C 60 180 130 175 130 130 C 130 90 70 100 70 130" stroke="currentColor" stroke-width="14" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <!-- Bubbles -->
+    <symbol id="bubbles" viewBox="0 0 60 200">
+      <circle cx="20" cy="20" r="6" fill="rgba(255,255,255,.6)"/>
+      <circle cx="35" cy="60" r="4" fill="rgba(255,255,255,.5)"/>
+      <circle cx="15" cy="100" r="7" fill="rgba(255,255,255,.55)"/>
+      <circle cx="40" cy="140" r="3" fill="rgba(255,255,255,.45)"/>
+      <circle cx="22" cy="175" r="5" fill="rgba(255,255,255,.5)"/>
+    </symbol>
+
+    <!-- Kid mascot: snorkeler (cover) -->
+    <symbol id="kidSnorkeler" viewBox="0 0 220 240">
+      <!-- shoulders / coral swim shirt -->
+      <path d="M40 200 Q 50 160 80 152 L 140 152 Q 170 160 180 200 L 180 240 L 40 240 Z" fill="#ff7a6c"/>
+      <path d="M80 152 Q 90 168 110 168 Q 130 168 140 152" fill="#0a5a99" opacity=".25"/>
+      <!-- neck -->
+      <rect x="96" y="138" width="28" height="22" fill="#fbcdc0"/>
+      <!-- hair back -->
+      <ellipse cx="110" cy="62" rx="56" ry="38" fill="#3b2418"/>
+      <!-- face -->
+      <ellipse cx="110" cy="92" rx="48" ry="52" fill="#fbcdc0"/>
+      <!-- hair front swoop -->
+      <path d="M62 70 Q 80 40 110 38 Q 142 40 158 72 Q 140 60 110 62 Q 82 62 62 70 Z" fill="#3b2418"/>
+      <!-- snorkel mask frame -->
+      <rect x="62" y="84" width="96" height="38" rx="16" fill="#3ec1c4" stroke="#063e6e" stroke-width="3"/>
+      <!-- mask glass left/right -->
+      <ellipse cx="86" cy="103" rx="14" ry="11" fill="#cfe6f4"/>
+      <ellipse cx="134" cy="103" rx="14" ry="11" fill="#cfe6f4"/>
+      <ellipse cx="82" cy="100" rx="4" ry="3" fill="#fff"/>
+      <ellipse cx="130" cy="100" rx="4" ry="3" fill="#fff"/>
+      <!-- mask strap (around back of head) -->
+      <path d="M62 100 Q 50 96 50 78" stroke="#3ec1c4" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M158 100 Q 170 96 170 78" stroke="#3ec1c4" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- snorkel tube (yellow + coral mouthpiece) -->
+      <rect x="158" y="62" width="14" height="64" rx="5" fill="#ffd166"/>
+      <rect x="160" y="56" width="20" height="14" rx="4" fill="#ffd166"/>
+      <rect x="156" y="118" width="14" height="10" rx="3" fill="#ff7a6c"/>
+      <!-- smile -->
+      <path d="M92 128 Q 110 138 128 128" stroke="#0a2540" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- cheeks -->
+      <circle cx="76" cy="124" r="5" fill="#ff7a6c" opacity=".35"/>
+      <circle cx="144" cy="124" r="5" fill="#ff7a6c" opacity=".35"/>
+    </symbol>
+
+    <!-- Kid mascot: diver with clipboard (final page) -->
+    <symbol id="kidDiver" viewBox="0 0 240 260">
+      <!-- bubbles drifting up -->
+      <g fill="rgba(255,255,255,.7)">
+        <circle cx="200" cy="40" r="6"/>
+        <circle cx="216" cy="68" r="4"/>
+        <circle cx="194" cy="84" r="3"/>
+      </g>
+      <!-- air tank -->
+      <rect x="36" y="116" width="22" height="80" rx="10" fill="#ffd166" stroke="#063e6e" stroke-width="3"/>
+      <rect x="40" y="106" width="14" height="14" rx="3" fill="#ff7a6c"/>
+      <!-- wetsuit body -->
+      <path d="M70 220 Q 56 180 70 150 L 170 150 Q 184 180 170 220 L 180 260 L 60 260 Z" fill="#0a5a99"/>
+      <!-- neck -->
+      <rect x="106" y="138" width="28" height="20" fill="#fbcdc0"/>
+      <!-- hair back -->
+      <ellipse cx="120" cy="64" rx="54" ry="38" fill="#1f1108"/>
+      <!-- face -->
+      <ellipse cx="120" cy="92" rx="46" ry="50" fill="#fbcdc0"/>
+      <!-- swept-side hair -->
+      <path d="M76 76 Q 90 42 120 40 Q 152 42 166 76 Q 148 64 120 66 Q 94 66 76 76 Z" fill="#1f1108"/>
+      <!-- big diving mask (wraparound) -->
+      <path d="M70 86 Q 90 76 120 76 Q 150 76 170 86 L 170 116 Q 150 124 120 124 Q 90 124 70 116 Z" fill="#063e6e" stroke="#0a2540" stroke-width="3"/>
+      <ellipse cx="120" cy="100" rx="46" ry="14" fill="#56b8e8"/>
+      <ellipse cx="100" cy="98" rx="6" ry="4" fill="#fff" opacity=".8"/>
+      <ellipse cx="138" cy="98" rx="6" ry="4" fill="#fff" opacity=".8"/>
+      <!-- mask strap -->
+      <path d="M70 102 Q 60 100 60 84" stroke="#063e6e" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M170 102 Q 180 100 180 84" stroke="#063e6e" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- regulator hose to tank -->
+      <path d="M76 112 Q 50 130 50 130" stroke="#0a2540" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- smile -->
+      <path d="M104 134 Q 120 142 136 134" stroke="#0a2540" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- arm holding clipboard (right side) -->
+      <path d="M168 178 Q 196 188 206 218" stroke="#fbcdc0" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <!-- clipboard -->
+      <rect x="172" y="200" width="50" height="58" rx="4" fill="#fff3ec" stroke="#0a2540" stroke-width="2"/>
+      <rect x="186" y="194" width="22" height="10" rx="2" fill="#0a5a99"/>
+      <line x1="178" y1="218" x2="216" y2="218" stroke="#9ad26d" stroke-width="2"/>
+      <line x1="178" y1="228" x2="216" y2="228" stroke="#9ad26d" stroke-width="2"/>
+      <line x1="178" y1="238" x2="200" y2="238" stroke="#9ad26d" stroke-width="2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="book">
+
+<!-- ============================================================ -->
+
+<!-- PAGE 1 — COVER -->
+
+<!-- ============================================================ -->
+
+<section class="page cover" aria-labelledby="cover-title">
+  <svg class="blob tl" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob br" aria-hidden="true" style="color:var(--pink-soft)"><use href="#softBlob"/></svg>
+  <svg class="squiggle" aria-hidden="true"><use href="#squig"/></svg>
+
+  <!-- HERO AQUARIUM SCENE -->
+
+  <img class="hero-photo cover-hero" loading="eager" decoding="async" width="1200" height="675"
+       src="images/00-aquarium-image.png"
+       alt="A colorful cartoon aquarium scene">
+
+
+  <h1 id="cover-title">BHP Fun Day 2026<br/>A Journey Through<br/>the Ocean</h1>
+  <p class="lede">Discover the wonders of our ocean through <strong>six exciting sections</strong>! Get ready to meet glowing fish, ancient sea monsters, mighty sharks and tiny mangrove explorers. 🐠</p>
+
+  <div class="section-previews">
+    <a class="preview-card" href="#s1">
+      <span class="preview-num">1</span>
+      <img class="preview-thumb" loading="lazy" decoding="async" alt=""
+           src="images/02-jellyfish.png">
+      <span class="preview-body"><b>In the Beginning</b><em>Plankton, sea jellies and ancient sea creatures.</em></span>
+    </a>
+    <a class="preview-card" href="#s2">
+      <span class="preview-num">2</span>
+      <img class="preview-thumb" loading="lazy" decoding="async" alt=""
+           src="images/07-seadragon-seahorse.png">
+      <span class="preview-body"><b>At the Surface</b><em>Where land meets sea — mangroves, mudskippers and sailing ships.</em></span>
+    </a>
+    <a class="preview-card" href="#s3">
+      <span class="preview-num">3</span>
+      <img class="preview-thumb" loading="lazy" decoding="async" alt=""
+           src="images/03-great-white-shark.png">
+      <span class="preview-body"><b>Sunlight</b><em>The bright, busy ocean — coral cities, sharks and reef fish.</em></span>
+    </a>
+    <a class="preview-card" href="#s4">
+      <span class="preview-num">4</span>
+      <img class="preview-thumb" loading="lazy" decoding="async" alt=""
+           src="images/04-manta-ray.png">
+      <span class="preview-body"><b>Into the Deep</b><em>Ocean travellers, currents and life on the seafloor.</em></span>
+    </a>
+    <a class="preview-card" href="#s5">
+      <span class="preview-num">5</span>
+      <img class="preview-thumb" loading="lazy" decoding="async" alt=""
+           src="images/10-deep-sea-oddities.png">
+      <span class="preview-body"><b>The Abyss</b><em>The dark deep sea, where animals make their own light.</em></span>
+    </a>
+    <a class="preview-card" href="#s6">
+      <span class="preview-num">6</span>
+      <img class="preview-thumb" loading="lazy" decoding="async" alt=""
+           src="images/11-deep-sea-submarine.png">
+      <span class="preview-body"><b>A New Horizon</b><em>Protecting our ocean — tiny actions, huge difference.</em></span>
+    </a>
+  </div>
+
+  <div class="footer-cta">Become an Ocean Explorer!</div>
+
+
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 2 — IN THE BEGINNING -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="s1">
+  <svg class="blob tl" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob br" aria-hidden="true" style="color:var(--pink)"><use href="#softBlob"/></svg>
+  <svg class="swirl" aria-hidden="true"><use href="#swirl"/></svg>
+
+  <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+       src="images/02-pre-historic.png"
+       alt="Cartoon prehistoric sea scene">
+
+  <div class="head-row">
+    <div class="num">1</div>
+    <div class="meta">
+      <span class="pill">Section One</span>
+      <h2 id="s1">In the Beginning</h2>
+    </div>
+  </div>
+  <p class="lede"><strong>Life started in water!</strong> Step into a time machine — meet plankton, sea jellies, and ancient sea creatures from millions of years ago.</p>
+
+  <div class="split">
+    <div class="scene-wrap">
+      <div class="scene">
+        <img class="scene-img" loading="lazy" decoding="async" src="images/02-jellyfish.png" alt="Cartoon jellyfish drifting in dark water">
+  </div>
+</div>
+<div>
+  <h3 style="color:var(--peach)">Tiny Worlds, Ancient Wonders 🌊</h3>
+  <p>A single drop of seawater can be packed with <strong>plankton</strong> — the tiny living things that feed almost everything in the ocean!</p>
+  <p style="margin-top:10px">Sea jellies have been drifting around for over <strong>500 million years</strong> — that's older than the dinosaurs! 🦖</p>
+</div>
+
+  </div>
+
+  <div class="lookout">
+    <h4>🔭 Look out for…</h4>
+    <ul>
+      <li><b>Drop of Water</b> — see plankton blown up huge so you can spot the hidden world inside one tiny drop.</li>
+      <li><b>Ocean Wonders</b> — Moon Jellies and Fried Egg Sea Jellies floating like spaceships.</li>
+      <li><b>Ancient Waters</b> — giant <em>Dunkleosteus</em> and <em>Xiphactinus</em> replicas, fossils and animatronics!</li>
+      <li><b>Conquering Land</b> — Axolotls and frogs that show how some animals moved from sea to shore.</li>
+    </ul>
+  </div>
+
+  <div class="funfacts">
+    <h4>⭐ Fun facts</h4>
+    <ul>
+      <li>Most ocean food chains begin with plankton.</li>
+      <li>Sea jellies have NO bones — they're more than 95% water!</li>
+      <li>Some ancient fish wore armor like a knight.</li>
+      <li>Amphibians help us understand how animals first walked on land.</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h4>🧠 Mini quiz <span style="font-size:13px;color:#cfe3f4;font-weight:500;font-family:Quicksand">(tap to reveal)</span></h4>
+    <details class="qa"><summary>What tiny living things can be found in seawater?</summary><div class="ans">→ Plankton!</div></details>
+    <details class="qa"><summary>Are sea jellies older than dinosaurs?</summary><div class="ans">→ Yes — by hundreds of millions of years!</div></details>
+    <details class="qa"><summary>Which section shows ancient sea creatures?</summary><div class="ans">→ Ancient Waters</div></details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 3 — AT THE SURFACE -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="s2">
+  <svg class="blob tr" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob bl" aria-hidden="true" style="color:var(--pink-soft)"><use href="#softBlob"/></svg>
+  <svg class="squiggle" aria-hidden="true" style="left:-10px;right:auto;top:38%"><use href="#squig"/></svg>
+
+  <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+       src="images/13-mudskipper.png"
+       alt="Aerial view of turquoise waves meeting a pale sandy beach">
+
+  <div class="head-row">
+    <div class="num">2</div>
+    <div class="meta">
+      <span class="pill">Section Two</span>
+      <h2 id="s2">At the Surface</h2>
+    </div>
+  </div>
+  <p class="lede"><strong>Where land meets sea!</strong> Singapore's coast is full of mudskippers walking on mud, archerfish shooting water, and mangroves that act like a nursery for baby sea animals.</p>
+
+  <div class="split flip">
+    <div class="scene-wrap">
+      <div class="scene">
+        <img class="scene-img" loading="lazy" decoding="async" src="images/05-mantatlak.png" alt="Cartoon coastal salamander-like creature">
+  </div>
+</div>
+<div>
+  <h3 style="color:var(--peach)">Singapore's Coast 🌳</h3>
+  <p>The edge of the sea is busy with life! Mangroves are like baby nurseries — small fish and crabs grow up safely between their tangled roots.</p>
+  <p style="margin-top:10px">Step aboard the <strong>Jewel of Muscat</strong>, a cool replica of an ancient sailing ship. Imagine crossing oceans long before GPS! 🧭</p>
+</div>
+
+  </div>
+
+  <div class="lookout">
+    <h4>🔭 Look out for…</h4>
+    <ul>
+      <li><b>Spirit of Exploration</b> — the Jewel of Muscat ship from long-ago sea voyages.</li>
+      <li><b>Singapore's Coast</b> — our local mangrove home, with muddy roots and salty water.</li>
+      <li><b>Local heroes</b> — Archerfish, Barred Mudskippers, Knobbly Sea Stars and Spotted Seahorses.</li>
+      <li><b>Projection magic</b> — coastal animals that come alive on the walls!</li>
+    </ul>
+  </div>
+
+  <div class="funfacts">
+    <h4>⭐ Fun facts</h4>
+    <ul>
+      <li>Mangroves are nurseries for young marine animals.</li>
+      <li>Mudskippers can <em>walk</em> on mud using their fins!</li>
+      <li>Archerfish shoot water like tiny water-pistols to knock bugs off leaves.</li>
+      <li>Singapore is busy and full of buildings, but our coasts still hide cool creatures.</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h4>🧠 Mini quiz <span style="font-size:13px;color:#cfe3f4;font-weight:500;font-family:Quicksand">(tap to reveal)</span></h4>
+    <details class="qa"><summary>What kind of coastal forest grows where land and sea meet?</summary><div class="ans">→ Mangroves!</div></details>
+    <details class="qa"><summary>Which fish can shoot water to catch prey?</summary><div class="ans">→ The Archerfish</div></details>
+    <details class="qa"><summary>Why are mangroves important for young animals?</summary><div class="ans">→ They give shelter and a safe place to grow.</div></details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 4 — SUNLIGHT -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="s3">
+  <svg class="blob tl" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob br" aria-hidden="true" style="color:var(--pink)"><use href="#softBlob"/></svg>
+  <svg class="swirl" aria-hidden="true" style="right:24px;left:auto;top:24%;width:120px"><use href="#swirl"/></svg>
+
+  <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+       src="images/03-great-shark.png"
+       alt="Sunlit coral reef wall covered in orange anthias fish">
+
+  <div class="head-row">
+    <div class="num">3</div>
+    <div class="meta">
+      <span class="pill">Section Three</span>
+      <h2 id="s3">Sunlight</h2>
+    </div>
+  </div>
+  <p class="lede"><strong>The bright, busy ocean!</strong> Sharks glide through tunnels, manta rays soar like underwater birds, and corals build whole cities for thousands of fish. 🦈</p>
+
+  <div class="split">
+    <div class="scene-wrap">
+      <div class="scene">
+        <img class="scene-img" loading="lazy" decoding="async" src="images/08-clownfish-anemone.png" alt="Cartoon clownfish in a coral anemone">
+  </div>
+</div>
+<div>
+  <h3 style="color:var(--peach)">A City of the Sea 🪸</h3>
+  <p>Coral reefs are sometimes called <strong>cities of the sea</strong> — busy underwater neighbourhoods full of fish, clams and even sharks!</p>
+  <p style="margin-top:10px">Watch <strong>manta rays</strong> "fly" through the Open Ocean tank. They look like underwater birds with giant wings.</p>
+</div>
+
+  </div>
+
+  <div class="lookout">
+    <h4>🔭 Look out for…</h4>
+    <ul>
+      <li><b>Shark Tunnel</b> — Sand Tigers, Scalloped Hammerheads, Sandbar Sharks gliding above your head.</li>
+      <li><b>Coral Gardens</b> — colourful corals and giant clams that filter ocean water.</li>
+      <li><b>Reef + Kelp Forest</b> — Weedy Seadragons, Dog Face Puffers, swaying kelp.</li>
+      <li><b>Open Ocean</b> — Manta Rays, Spotted Eagle Rays and Zebra Sharks.</li>
+    </ul>
+  </div>
+
+  <div class="funfacts">
+    <h4>⭐ Fun facts</h4>
+    <ul>
+      <li>Sharks have NO bones — their skeletons are made of bendy <em>cartilage</em> (like your nose!).</li>
+      <li>Coral reefs are sometimes called "cities of the sea".</li>
+      <li>Manta rays look like they're flying underwater.</li>
+      <li>Kelp can grow tall enough to make underwater forests!</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h4>🧠 Mini quiz <span style="font-size:13px;color:#cfe3f4;font-weight:500;font-family:Quicksand">(tap to reveal)</span></h4>
+    <details class="qa"><summary>What animal can you see in the Shark Tunnel?</summary><div class="ans">→ Sharks!</div></details>
+    <details class="qa"><summary>Are corals rocks, plants, or animals?</summary><div class="ans">→ Animals — tiny ones living together!</div></details>
+    <details class="qa"><summary>What animal looks like it is flying underwater?</summary><div class="ans">→ Manta rays</div></details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 5 — INTO THE DEEP -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="s4">
+  <svg class="blob tr" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob bl" aria-hidden="true" style="color:var(--pink-soft)"><use href="#softBlob"/></svg>
+  <svg class="squiggle" aria-hidden="true" style="left:-20px;right:auto;top:30%"><use href="#squig"/></svg>
+
+  <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+       src="images/14-ray.png"
+       alt="Two whales viewed from above as they swim through deep blue ocean">
+
+  <div class="head-row">
+    <div class="num">4</div>
+    <div class="meta">
+      <span class="pill">Section Four</span>
+      <h2 id="s4">Into the Deep</h2>
+    </div>
+  </div>
+  <p class="lede"><strong>Down we go!</strong> Discover ocean currents like giant rivers in the sea, dolphins on epic journeys, and the wiggly creatures of the seafloor. 🐬</p>
+
+  <div class="split flip">
+    <div class="scene-wrap">
+      <div class="scene">
+        <img class="scene-img" loading="lazy" decoding="async" src="images/12-sea-turtle.png" alt="Cartoon sea turtle on the underwater highway">
+  </div>
+</div>
+<div>
+  <h3 style="color:var(--peach)">Underwater Highways 🌊</h3>
+  <p>Ocean <strong>currents</strong> are like giant rivers inside the sea — they carry food, animals and (sadly) even rubbish across the world.</p>
+  <p style="margin-top:10px">Some animals migrate <strong>thousands of kilometres</strong> every year. Imagine swimming from Singapore to Australia and back!</p>
+</div>
+
+  </div>
+
+  <div class="lookout">
+    <h4>🔭 Look out for…</h4>
+    <ul>
+      <li><b>Open Ocean Currents</b> — including a "Garbage Patch" exhibit about plastic pollution.</li>
+      <li><b>Migrators</b> — Japanese Pineapplefish and Indo-Pacific Bottlenose Dolphins.</li>
+      <li><b>Benthos</b> — life on the seafloor: Green Morays, Tasmanian Giant Crabs, Banggai Cardinalfish, Yellow Tang.</li>
+      <li><b>Artificial Habitats</b> — shipwrecks turned into homes for sea life.</li>
+    </ul>
+  </div>
+
+  <div class="funfacts">
+    <h4>⭐ Fun facts</h4>
+    <ul>
+      <li>Some sea animals migrate further than humans drive cars in a year.</li>
+      <li>The ocean floor is full of hidden life — it's not empty at all!</li>
+      <li>Sunken ships can become busy underwater apartments.</li>
+      <li>Plastic thrown on land can travel all the way to the deep sea. 😢</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h4>🧠 Mini quiz <span style="font-size:13px;color:#cfe3f4;font-weight:500;font-family:Quicksand">(tap to reveal)</span></h4>
+    <details class="qa"><summary>What are ocean currents like?</summary><div class="ans">→ Moving rivers in the sea!</div></details>
+    <details class="qa"><summary>What does "benthos" mean?</summary><div class="ans">→ Life on or near the ocean floor.</div></details>
+    <details class="qa"><summary>How can a shipwreck help marine animals?</summary><div class="ans">→ It can become a shelter or artificial reef.</div></details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 6 — THE ABYSS -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="s5" style="background:#04335c">
+  <svg class="blob tl" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob br" aria-hidden="true" style="color:var(--pink)"><use href="#softBlob"/></svg>
+  <svg class="swirl" aria-hidden="true"><use href="#swirl"/></svg>
+
+  <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+       src="images/10-deep.png"
+       alt="Light rays piercing the dark deep ocean towards a sunlit surface">
+
+  <div class="head-row">
+    <div class="num">5</div>
+    <div class="meta">
+      <span class="pill">Section Five</span>
+      <h2 id="s5">The Abyss</h2>
+    </div>
+  </div>
+  <p class="lede"><strong>Welcome to the dark deep sea!</strong> No sunlight, huge pressure, and creatures that make their <em>own</em> light. 🔦✨</p>
+
+  <div class="split">
+    <div class="scene-wrap">
+      <div class="scene" style="box-shadow:inset 0 0 60px rgba(0,0,0,.5)">
+        <img class="scene-img" loading="lazy" decoding="async" src="images/10-deep-sea-oddities.png" alt="Cartoon deep-sea oddities glowing in the dark">
+  </div>
+</div>
+<div>
+  <h3 style="color:var(--peach)">Glow in the Dark ✨</h3>
+  <p>Some animals here make their <strong>own light</strong> — that's called <em>bioluminescence</em>. They use it to find food, hide from danger, or send messages to friends.</p>
+  <p style="margin-top:10px">When a whale dies, its body sinks and feeds deep-sea creatures for <strong>YEARS</strong>. That's called a <strong>whale fall</strong>.</p>
+</div>
+
+  </div>
+
+  <div class="lookout">
+    <h4>🔭 Look out for…</h4>
+    <ul>
+      <li><b>Deep Ocean Exploration</b> — submersibles humans use to dive where we can't swim.</li>
+      <li><b>Life in the Deep</b> — anglerfish, glowing creatures and other shadowy hunters.</li>
+      <li><b>Whale Fall + Seamount</b> — a real whale skeleton with magical projections.</li>
+      <li><b>Trenches</b> — some are deeper than Mount Everest is tall! 🏔️</li>
+    </ul>
+  </div>
+
+  <div class="funfacts">
+    <h4>⭐ Fun facts</h4>
+    <ul>
+      <li>The deep sea is darker than the darkest night.</li>
+      <li>Some animals make their own light — it's called bioluminescence.</li>
+      <li>A whale fall feeds deep-sea life for many years.</li>
+      <li>We've explored more of the Moon than the deepest ocean!</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h4>🧠 Mini quiz <span style="font-size:13px;color:#cfe3f4;font-weight:500;font-family:Quicksand">(tap to reveal)</span></h4>
+    <details class="qa"><summary>What is it called when animals make their own light?</summary><div class="ans">→ Bioluminescence</div></details>
+    <details class="qa"><summary>What is a whale fall?</summary><div class="ans">→ A dead whale that sinks and feeds deep-sea life.</div></details>
+    <details class="qa"><summary>Are ocean trenches shallow or very deep?</summary><div class="ans">→ Very deep — deeper than any mountain is tall!</div></details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 7 — A NEW HORIZON -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="s6">
+  <svg class="blob tr" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob bl" aria-hidden="true" style="color:var(--pink)"><use href="#softBlob"/></svg>
+  <svg class="squiggle" aria-hidden="true"><use href="#squig"/></svg>
+
+  <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+       src="images/11-deep-sea-submarine.png"
+       alt="Earth as seen from space, blue oceans and white clouds">
+
+
+  <div class="head-row">
+    <div class="num">6</div>
+    <div class="meta">
+      <span class="pill">Section Six</span>
+      <h2 id="s6">A New Horizon</h2>
+    </div>
+  </div>
+  <p class="lede"><strong>Protecting our blue planet!</strong> The ocean's future is in our hands — and even small actions can make a HUGE difference. 💙🌍</p>
+
+  <div class="split flip">
+    <div class="scene-wrap">
+      <div class="scene">
+        <img class="scene-img" loading="lazy" decoding="async" src="images/01-explorer-boy.png" alt="Cartoon explorer kid">
+  </div>
+</div>
+<div>
+  <h3 style="color:var(--peach)">Hope for our Ocean 💙</h3>
+  <p>The ocean helps control Earth's <strong>climate</strong> — but warming seas, melting ice and pollution are making things harder for sea life.</p>
+  <p style="margin-top:10px">The good news? <strong>Every kid is a hero in training!</strong> Tiny actions ripple out — just like waves.</p>
+</div>
+
+  </div>
+
+  <div class="lookout">
+    <h4>🔭 Look out for…</h4>
+    <ul>
+      <li><b>Ocean's Future</b> — an immersive illusion of melting ice and rising seas.</li>
+      <li><b>Lionfish habitat</b> — beautiful, but an invasive species in some places.</li>
+      <li><b>Hallway of Hope</b> — stories of conservation heroes and what YOU can do.</li>
+    </ul>
+  </div>
+
+  <div class="funfacts">
+    <h4>⭐ Fun facts</h4>
+    <ul>
+      <li>The ocean helps control Earth's climate.</li>
+      <li>Rising seas can affect islands and coastal cities — like Singapore!</li>
+      <li>Invasive species are animals that move where they don't belong.</li>
+      <li>Using less plastic = a happier ocean. 🐢</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h4>🧠 Mini quiz <span style="font-size:13px;color:#cfe3f4;font-weight:500;font-family:Quicksand">(tap to reveal)</span></h4>
+    <details class="qa"><summary>What can happen when ice melts and sea levels rise?</summary><div class="ans">→ Coastal places may flood or change shape.</div></details>
+    <details class="qa"><summary>What is an invasive species?</summary><div class="ans">→ A species that spreads where it does not naturally belong.</div></details>
+    <details class="qa"><summary>Name one thing kids can do to help the ocean.</summary><div class="ans">→ Use less plastic, recycle, never litter, learn more!</div></details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+
+<!-- PAGE 8 — FINAL OCEAN EXPLORER CHALLENGE -->
+
+<!-- ============================================================ -->
+
+<section class="page" aria-labelledby="ch">
+  <svg class="blob tl" aria-hidden="true"><use href="#blobShape"/></svg>
+  <svg class="blob br" aria-hidden="true" style="color:var(--pink-soft)"><use href="#softBlob"/></svg>
+  <svg class="swirl" aria-hidden="true"><use href="#swirl"/></svg>
+
+  <div class="challenge-grid">
+    <div>
+      <img class="hero-photo" loading="lazy" decoding="async" width="1200" height="675"
+           src="images/15-chest.png"
+           alt="A young snorkeler with mask floating at the surface of clear blue water">
+
+      <div class="head-row" style="margin-top:6px">
+        <div class="num">★</div>
+        <div class="meta">
+          <span class="pill">Final Mission</span>
+          <h2 id="ch">Ocean Explorer Challenge</h2>
+        </div>
+      </div>
+      <p class="lede">You did it! Before you head home, fill in your <strong>Explorer Logbook</strong> and become an official Ocean Hero. 🏆</p>
+    </div>
+    <div>
+      <div class="challenge-list">
+        <h3>📒 My Explorer Logbook</h3>
+        <ol>
+          <li>My favourite animal was: <span class="blank"></span></li>
+          <li>The strangest animal I saw was: <span class="blank"></span></li>
+          <li>One new word I learned was: <span class="blank"></span></li>
+          <li>One way I can help the ocean is: <span class="blank"></span></li>
+          <li>I would like to learn more about: <span class="blank"></span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="footer-cta" style="justify-content:center;margin-top:26px">🌊 Thank you for visiting the Singapore Oceanarium! 🐚</div>
+
+</section>
+
+</div>
+</body>
+</html>

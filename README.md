@@ -1,0 +1,1 @@
+Create an info sheet for kids from 6-9 to learn about the exhibits in Oceanarium. The info sheet will be deployed as a github page and be available as a QR code for people to sign up. The info sheet can also be downloaded as a pdf for hard copy.
