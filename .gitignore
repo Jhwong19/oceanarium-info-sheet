@@ -1,5 +1,5 @@
 .DS_Store
 *.log
-setup-image-mcp.sh
-images.png
+node_modules/
+dist/
 .claude/

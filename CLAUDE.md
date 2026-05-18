@@ -4,36 +4,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-A single-page kids' (ages 6-9) fact sheet for the Singapore Oceanarium. Distributed via a QR code that points at the GitHub Pages URL, and also intended to be printed / saved as PDF for hard copies. See `README.md`.
+Single-page **Aquarium Adventure Challenge** landing page for BHP Fun Day 2026 at the Singapore Oceanarium. Guests scan a QR code, get 8 mystery photos, and find/replicate the spots around the aquarium. The page is also printable as a PDF for hard-copy distribution. Originated from a Figma design (see `README.md` for the source link).
 
-## Stack & workflow
+## Stack
 
-- Pure static HTML — everything lives in `index.html` (~1700 lines). No build step, no package manager, no tests, no linter.
-- Fonts (`Fredoka`, `Quicksand`) are pulled from Google Fonts at runtime.
-- Preview locally by opening `index.html` in a browser, or `python3 -m http.server` from the repo root.
-- Deployed via GitHub Pages from `main` (remote: `Jhwong19/oceanarium-info-sheet`). Pushing to `main` ships it.
-- "Download as PDF" = the user prints from the browser. Print styling is in the `@media print` block (each `<section class="page">` becomes one printed page via `break-after:page`). Verify any layout change still prints cleanly to one page per section.
+- **React 18 + Vite 6 + Tailwind CSS v4** (via `@tailwindcss/vite`).
+- **shadcn/ui** primitives in `src/app/components/ui/` (Radix-based). Today only `Card` is imported by `App.tsx`; the rest are kept to mirror the Figma export 1:1.
+- **`motion/react`** for the bubble + sea-creature animation.
+- **`lucide-react`** for icons.
 
-## Document structure
+## Entry points
 
-The body is one `.book` container holding 8 `<section class="page">` blocks in narrative order: cover, then six themed pages (In the Beginning → At the Surface → Sunlight → Into the Deep → The Abyss → A New Horizon), then a final Ocean Explorer Challenge. Each themed page reuses the same building blocks:
+- `index.html` — Vite entry, mounts `<div id="root">` and loads `src/main.tsx`.
+- `src/main.tsx` — renders `<App />` and imports `src/styles/index.css`.
+- `src/app/App.tsx` — the entire page (~200 lines): BHP logo + 5 cards (header / How the Game Works / Winning / Lucky Draw / Pro Tips) + 8-photo grid + lightbox modal.
+- `src/app/components/BubbleAnimation.tsx` — full-screen animated background (bubbles + emoji sea creatures + bottom plants).
 
-- `.head-row` — number circle (`.num`) + `.pill` tag + `<h2>` title.
-- `.split` (optionally `.flip`) — two-column grid pairing a `.scene` SVG illustration with body copy. Collapses to one column under 560px.
-- `.lookout` — "look out for" bullet list with yellow dot markers.
-- `.funfacts` — cream-card list with star bullets.
-- `.quiz` — `<details>`/`<summary>` Q&A blocks; the `?` marker flips to `!` via `.qa[open] summary::before` when opened.
+## Local workflow
 
-Decorative SVG shapes (`blobShape`, `softBlob`, `squig`, `swirl`, `bubbles`, plus per-page fish/creature symbols) are defined once in hidden `<svg>` `<symbol>` blocks and reused with `<use href="#id">`. When adding a new creature, add the `<symbol>` to the relevant defs block rather than inlining a fresh SVG each time.
+- `npm install`, `npm run dev` to preview.
+- `npm run build` produces `dist/`.
+- Push to `main` → GitHub Actions (`.github/workflows/deploy.yml`) builds and publishes to GitHub Pages.
 
-Theming is driven by CSS custom properties on `:root` (`--blue`, `--coral`, `--peach`, `--cream`, etc.). Page 6 (The Abyss) overrides the page background inline (`style="background:#04335c"`); follow that pattern for any one-off page tinting.
+## Vite base path
 
-## ⚠ Smart-quote landmine in the CSS
+`vite.config.ts` sets `base: '/oceanarium-info-sheet/'` because the site is served from the GitHub Pages project URL `https://jhwong19.github.io/oceanarium-info-sheet/`. If a custom domain is added (via a CNAME), change this to `'/'`.
 
-Large stretches of the `<style>` block use Unicode smart quotes and en-dashes instead of ASCII — e.g. `var(–coral)` (en-dash, not hyphen), `'Fredoka'` (curly apostrophes), `content:""` (curly quotes). These are silently invalid CSS, so the affected rules currently do nothing; the page renders on browser defaults + the rules that did survive. There are ~90 such occurrences across the file.
+## Print / PDF support
 
-Implications when editing:
+Print rules live in `src/styles/print.css` (imported from `src/styles/index.css`). Key behaviours:
 
-- Don't "fix" them in passing — that changes the visual output and is a separate decision. If the user wants the styling actually applied, replace them deliberately and review the result in a browser.
-- When adding new CSS, use plain ASCII (`-`, `'`, `"`) so your rules actually apply. Don't copy-paste from existing broken rules expecting them to work.
-- If you intentionally want to match the existing (non-functional) style for consistency, copy the exact characters from the file — typing `-` will produce a hyphen, not the en-dash already in the file.
+- `.print-hide` — wrap the `BubbleAnimation` and lightbox; removed in print.
+- `.print-card` — applied to each top-level `<Card>` (and the header div). Forces white background, drops blur/shadows, and adds `break-after: page` so each section becomes one printed page. Add this class to any new top-level card you introduce.
+- `.print-photo-grid` — locks the photo grid to 4 columns in print so all 8 photos fit on one page.
+
+When adding or removing sections, keep `print-card` on the wrappers so the one-page-per-section structure stays predictable.
+
+## Styling
+
+Tailwind v4 + the shadcn theme in `src/styles/theme.css` (CSS variables in `oklch`). Use Tailwind utility classes in JSX rather than extending the theme unless needed.
