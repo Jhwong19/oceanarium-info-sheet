@@ -11,6 +11,7 @@ import img5 from "../imports/IMG_7286.jpg";
 import img6 from "../imports/IMG_7287.jpg";
 import img7 from "../imports/IMG_7288.jpg";
 import img8 from "../imports/IMG_7289.jpg";
+import submissionQr from "../imports/submission-qr.png";
 
 export default function App() {
   const [expandedPhoto, setExpandedPhoto] = useState<{ id: number; src: string } | null>(null);
@@ -166,6 +167,50 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* How to Submit */}
+          <div className="mt-8 rounded-2xl border-2 border-blue-200 bg-blue-50 p-6 md:flex md:items-center md:gap-8">
+            <div className="flex-1 space-y-3">
+              <h3 className="text-2xl font-bold text-blue-600">
+                📤 How to Submit Your Photos
+              </h3>
+              <p className="flex items-start gap-3 text-lg text-gray-700">
+                <span className="text-2xl">📸</span>
+                <span>Snapped all <strong>8 selfies</strong>? Awesome work, explorer!</span>
+              </p>
+              <p className="flex items-start gap-3 text-lg text-gray-700">
+                <span className="text-2xl">📲</span>
+                <span>Send them in through our official Microsoft submission form — either way works:</span>
+              </p>
+              <p className="flex items-start gap-3 text-lg text-gray-700">
+                <span className="text-2xl">📷</span>
+                <span><strong>Scan the QR code</strong> with your phone camera, <strong>or</strong> open the form link directly.</span>
+              </p>
+              <p className="flex items-start gap-3 text-lg text-gray-700">
+                <span className="text-2xl">⚡</span>
+                <span>The first <strong className="text-blue-600">5 to submit all 8</strong> win prizes — so don't wait! 🎉</span>
+              </p>
+            </div>
+            <div className="mt-6 flex flex-col items-center md:mt-0">
+              <div className="bg-white rounded-2xl p-3 shadow-lg">
+                <img
+                  src={submissionQr}
+                  alt="QR code to the Microsoft photo submission form"
+                  className="w-44 h-44"
+                />
+              </div>
+              <p className="mt-3 text-sm font-semibold text-gray-600">Scan to submit 🐠</p>
+              <p className="mt-1 text-sm text-gray-500">or open the form link:</p>
+              <a
+                href="https://forms.office.com/r/mC8uh8HLKQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block font-semibold text-blue-600 underline break-all text-center"
+              >
+                forms.office.com/r/mC8uh8HLKQ
+              </a>
+            </div>
           </div>
         </Card>
 
